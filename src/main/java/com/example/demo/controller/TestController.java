@@ -81,6 +81,12 @@ public class TestController {
 		return "register";
 	}
 	
+	@GetMapping("/m6")
+	public String m6(Model model) {
+		model.addAttribute("status", "s7");	// s1, s2, s3
+		return "m6";
+	}
+	
 	
 }
 

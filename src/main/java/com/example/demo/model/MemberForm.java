@@ -4,6 +4,16 @@ public class MemberForm {
 	private String account;
 	private String passwd;
 	private String cname;
+	private String area;
+	
+	
+	
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
 	public String getAccount() {
 		return account;
 	}

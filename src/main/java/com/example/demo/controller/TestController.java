@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,11 +51,23 @@ public class TestController {
 	@GetMapping("/register")
 	public String m4(Model model) {
 		MemberForm form = new MemberForm();
-		form.setAccount("Account");
+		//form.setAccount("Account");
 		model.addAttribute("memberForm", form);
+		
+		//List<String> areas = List.of("北屯區","南屯區","西屯區");
+		List<Map<String,String>> areas = List.of(
+			Map.of("zipcode","401","name","北屯區"),
+			Map.of("zipcode","402","name","南屯區"),
+			Map.of("zipcode","403","name","西屯區")
+		);
+		
+		model.addAttribute("areas", areas);
+		
+		
 		
 		return "register";
 	}
+	
 	@PostMapping("/register")
 	public String m5(
 			@ModelAttribute MemberForm memberForm, 
@@ -61,6 +75,7 @@ public class TestController {
 		System.out.println(memberForm.getAccount());
 		System.out.println(memberForm.getPasswd());
 		System.out.println(memberForm.getCname());
+		System.out.println(memberForm.getArea());
 		model.addAttribute("msg", "註冊成功");
 		
 		return "register";

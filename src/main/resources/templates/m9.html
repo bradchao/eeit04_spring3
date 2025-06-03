@@ -1,0 +1,22 @@
+<meta charset="UTF-8" />
+<head>
+	<style>
+	</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Index</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="name, status : ${names}" 
+				th:classappend="${status.odd ? 'odd-row' : 'even-row'}">
+				<td th:text="${status.index}"></td>
+				<td th:text="${name}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>

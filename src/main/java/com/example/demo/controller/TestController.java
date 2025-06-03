@@ -112,6 +112,13 @@ public class TestController {
 		return "m8";
 	}
 	
+	@GetMapping("/m9")
+	public String m9(Model model) {
+		List<String> names = List.of(
+				"Brad","Andy","Kevin","Peter","Mary","Vivian","Tony");
+		model.addAttribute("names", names);
+		return "m9";
+	}
 	
 	
 	

@@ -5,8 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.MemberForm;
 import com.example.demo.model.User;
+import com.example.demo.model.UserForm;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/test")
@@ -86,6 +92,28 @@ public class TestController {
 		model.addAttribute("status", "s7");	// s1, s2, s3
 		return "m6";
 	}
+	
+	@GetMapping("/m7")
+	public String m7(Model model) {
+		model.addAttribute("userForm", new UserForm());
+		return "m7";
+	}
+	
+	@PostMapping("/m7")
+	public String m7(
+			Model model,
+			@ModelAttribute("userForm") @Valid UserForm userForm,
+			BindingResult bindResult
+			) {
+		if (bindResult.hasErrors()) {
+			return "m7";
+		}
+		
+		return "m8";
+	}
+	
+	
+	
 	
 	
 }
